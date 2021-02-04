@@ -8,35 +8,37 @@ $semiwite: #f1f1f1
 
 .wrapper
   background-image: url('../assets/images/bkg.jpg')
-  background-position: 0 0
+  background-position: center center
   background-repeat: no-repeat
   background-size: cover
   display: block
   // height: 100vh
-  height: calc(100% - 60px)
-  min-height: calc(100vh - 60px) // main-content - navbar
+  height: calc(100% - 96px)
+  min-height: calc(100vh - 96px) // main-content - navbar
   overflow: hidden
   overflow-y: auto
   width: 100%
 
 .header
-  background-color: yellow
   display: block
-  height: 60px
+  height: 96px
   width: 100%
 
 .main-content
+  // background-color: yellow
   display: block
+  background-image: url('../assets/images/pattern.png')
   // height: calc(100% - 60px) // main-content -footer
   // height: calc(100vh - 60px) // main-content -footer
   height: 100vh
+  height: calc(100vh - 96px)
   min-height: 400px
   width: 100%
 
 .footer
   background-color: #333
   color: $semiwite
-  height: 60px
+  // height: 90px
 
 .centered-grid
   display: grid
@@ -68,8 +70,11 @@ $semiwite: #f1f1f1
       font-size: 1.8em
     .card__desc
       font-weight: 300
-      // background: pink
+      background-color: rgba(#d94d5a,1)
+      width: 100%
+      padding: 4px 1rem
       line-height: 28px
+      border-radius: 4px
       // font-size: 2rem
 .buttons
   padding: 2rem 0 0
@@ -79,14 +84,14 @@ $semiwite: #f1f1f1
   padding: .8rem 1.2em
   background-color: rgba(#d94d5a,.8)
   border-radius: 30px
+  font-size: .8em
   i
     // background: green
     vertical-align: middle
-    font-size: 1.2em
   span
     // background: blue
     text-transform: uppercase
-    font-weight: bold
+    // font-weight: bold
   &:hover
     box-shadow: 0 0.3rem 0.8rem rgba(#333, 0.2)
     color: #333
@@ -251,7 +256,7 @@ $semiwite: #f1f1f1
     // background-repeat: no-repeat
     // background-position: 0 0 
     // background-size: cover
-    background-color: rgba(#111,.8)
+    background-color: rgba(#333,1)
     // background-color: #000
   .modal-dialog 
     margin: 0
@@ -404,3 +409,73 @@ $semiwite: #f1f1f1
 //   background-size: 100% 5px
 //   background-repeat: no-repeat
 //   background-position: 0 0
+
+#flip
+  height: 30px
+  overflow: hidden
+  // background: red
+  > div > span
+    // background: green
+    line-height: 60px
+    // padding-left: 6%
+    // padding-right: 6%
+    display: block
+    // justify-items: center
+
+  div
+    span
+      font-family: 'Montserrat', sans-serif
+      color: #fff
+      font-weight: 500
+      font-size: 1.4em
+    &:first-child
+      animation: show 6s linear alternate-reverse infinite
+      // span
+      //   padding-top: 30px
+    //   color: blue
+
+    // &:first-child div
+    //   color: #05c4d3
+
+    // &:last-child span
+    //   padding-bottom: 30px
+    //   color: #1937bd
+
+
+@keyframes show
+  0%
+    margin-top: -240px // el blloque completo
+  0%
+    margin-top: -240px // el blloque completo
+
+
+.nova
+  background-color: rgba(#333, .8)
+  width: 100%
+  padding: 10px
+  display: block
+  h2
+    font-weight: 200
+    // margin: 0.4em 0
+    color: #f1f1f1
+    font-size: 1.4em
+    // text-align: left
+    strong
+      color: rgba(#d94d5a, 1)
+
+.parallax
+  /* The image used */
+  // background-image: url('../assets/images/bkgw.jpg')
+  background-image: url('../assets/images/parallax-img.png')
+
+  /* Full height */
+  height: 100%
+
+  /* Create the parallax scrolling effect */
+  background-attachment: fixed
+  background-position: center -20px
+  background-repeat: no-repeat
+  background-size: cover
+@media only screen and (max-device-width: 1366px)
+  .parallax 
+    background-attachment: scroll

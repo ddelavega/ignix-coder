@@ -10,9 +10,8 @@
   <link rel="stylesheet" href="css/style.css">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;800;500&family=Open+Sans:wght@300&display=swap" rel="stylesheet">
-  <title>Inicio | IGNIX | Argentina | Buenos Aires</title>
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;800&family=Open+Sans:wght@300&display=swap" rel="stylesheet">  <title>Inicio | IGNIX | Argentina | Buenos Aires</title>
 </head>
 <body>
   <div class="header">
@@ -99,6 +98,19 @@
         </span>
           <br>
           <br>
+          <div class="nova">
+            <h2>Equipos para incendios <br><strong
+              class="txt-rotate"
+              data-period="2000"
+              data-rotate='[ "en Industrias.", "Forestales.", "Edificios.", "Garages.", "Adaptables." ]'></strong></h2>
+          </div>
+         
+        <!-- <div id=flip>
+          <div><span>1 UNO</span></div>
+          <div><span>2 DOS</span></div>
+          <div><span>3 TRES</span></div>
+          <div><span>4 CUATRO</span></div>
+        </div> -->
         <div class="buttons">
           <a href="#bloque__show" class="btn-custom">
             <i class="icon ico-plus-circle-alt"></i> 
@@ -110,6 +122,9 @@
         <br>
 
       </div>
+    </div>
+    <div class="main-content centered-grid parallax" id="second">
+JUAN
     </div>
     <div class="container bloque__show" id="bloque__show">
       <div class="bloque__show--card my-3">
@@ -126,10 +141,10 @@
             </a>
           </p>
         </div> -->
-          <blockquote class="blockquote mx-2 my-2">
+          <!-- <blockquote class="blockquote mx-2 my-2">
             <p class="px-1">La mejor metodología en la mejor academia de Jiu Jitsu del mundo, sean bienvenidos!</p>
             <p class="blockquote--footer py-1"><cite title="Alliance Argentina Jiu Jitsu">Alliance Argentina Jiu Jitsu</cite></p>
-          </blockquote>
+          </blockquote> -->
       </div>
 <!--       
       <p class="deg-box">
@@ -141,14 +156,18 @@
       </span> -->
 
     <div class="footer">
-      Menu
-      </div>
-      <div class="btn-top">
-        <a href="#main">
-          <i class="icon ico-angle-up"></i>
-        </a>
-      </div>
-  </div>
+      <p class="copyrights">
+        <b>IGNIX<sup>®</sup></b> Extintor | © Copyright 2017 - 2018 <br>
+        Unidades para extinción de incendios Todos los Derechos Reservados. <br>
+        Monte 5845 C.A.B.A. | C1440BLS Ciudad Autónoma de Buenos Aires
+      </p>
+    </div>
+    <div class="btn-top">
+      <a href="#main">
+        <i class="icon ico-angle-up"></i>
+      </a>
+    </div>
+</div>
 <div class="modal fullscreen-menu fade" id="allianceModal" tabindex="-1" aria-labelledby="allianceModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content px-3 px-lg-5 px-xl-5">
@@ -194,6 +213,64 @@
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.min.js" integrity="sha384-pQQkAEnwaBkjpqZ8RU1fF1AKtTcHJwFl3pblpTlHXybJjHpMYo79HY3hIi4NKxyj" crossorigin="anonymous"></script>
     -->
+    <script>
+      var TxtRotate = function(el, toRotate, period) {
+  this.toRotate = toRotate;
+  this.el = el;
+  this.loopNum = 0;
+  this.period = parseInt(period, 10) || 2000;
+  this.txt = '';
+  this.tick();
+  this.isDeleting = false;
+};
+
+TxtRotate.prototype.tick = function() {
+  var i = this.loopNum % this.toRotate.length;
+  var fullTxt = this.toRotate[i];
+
+  if (this.isDeleting) {
+    this.txt = fullTxt.substring(0, this.txt.length - 1);
+  } else {
+    this.txt = fullTxt.substring(0, this.txt.length + 1);
+  }
+
+  this.el.innerHTML = '<span class="wrap">'+this.txt+'</span>';
+
+  var that = this;
+  var delta = 300 - Math.random() * 100;
+
+  if (this.isDeleting) { delta /= 2; }
+
+  if (!this.isDeleting && this.txt === fullTxt) {
+    delta = this.period;
+    this.isDeleting = true;
+  } else if (this.isDeleting && this.txt === '') {
+    this.isDeleting = false;
+    this.loopNum++;
+    delta = 500;
+  }
+
+  setTimeout(function() {
+    that.tick();
+  }, delta);
+};
+
+window.onload = function() {
+  var elements = document.getElementsByClassName('txt-rotate');
+  for (var i=0; i<elements.length; i++) {
+    var toRotate = elements[i].getAttribute('data-rotate');
+    var period = elements[i].getAttribute('data-period');
+    if (toRotate) {
+      new TxtRotate(elements[i], JSON.parse(toRotate), period);
+    }
+  }
+  // INJECT CSS
+  var css = document.createElement("style");
+  css.type = "text/css";
+  css.innerHTML = ".txt-rotate > .wrap { border-right: 0.08em solid #666 }";
+  document.body.appendChild(css);
+};
+    </script>
   </body>
 
 </html>
